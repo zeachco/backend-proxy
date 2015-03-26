@@ -1,8 +1,8 @@
 {
-  "showServes": true,
+  "showServes": false,
   "showMocks": true,
   "host": "localhost",
   "port": 8080,
   "entryPort": 8081,
-  "throttle": 2000
+  "throttle": 500
 }
