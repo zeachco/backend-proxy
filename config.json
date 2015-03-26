@@ -3,6 +3,6 @@
   "showMocks": true,
   "host": "localhost",
   "port": 8080,
-  "entryPort": 80,
+  "entryPort": 8081,
   "throttle": 2000
 }
