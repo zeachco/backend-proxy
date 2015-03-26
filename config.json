@@ -3,5 +3,5 @@
   "showMocks": true,
   "host": "localhost",
   "port": 8080,
-  "entryPort": 8081
+  "entryPort": 80
 }
