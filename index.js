@@ -48,7 +48,7 @@ app.use(proxy(backendAddress, {
   intercept: function(data, req, res, callback) {
     var path = url.parse(req.url).path;
     if (!data.length) {
-      console.log('PROXY'.red, req.method, path.red, 'does not exist');
+      console.log('PROXY'.yellow, req.method, path.red, 'not loaded');
     } else if (config.showServes) {
       console.log('PROXY'.yellow, req.method, path.green);
     }
