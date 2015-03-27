@@ -1,14 +1,17 @@
 [{
+  "id": 100,
   "status": "validation_error",
   "createdDate": "Thu Mar 26 2015 16:18:17 GMT-0400 (EDT)",
   "name": "My set 1",
   "reportUrl": "http://www.example.com"
 }, {
+  "id": 101,
   "status": "migration_done",
   "createdDate": "Thu Mar 26 2015 16:18:27 GMT-0400 (EDT)",
   "name": "Myset 2",
   "reportUrl": "http://www.example.com"
 }, {
+  "id": 102,
   "status": "migration_error",
   "createdDate": "Thu Mar 26 2015 16:18:35 GMT-0400 (EDT)",
   "name": "Myset 3",
