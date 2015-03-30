@@ -2,11 +2,7 @@ var app = require(process.cwd() + '/app');
 
 module.exports = {
   _mock: function(req, session, next) {
-    try {
-      return app.get('batches');
-    } catch (e) {
-
-    }
+    if (app.data.batches) return app.data.batches;
 
     var fakeData = [];
     var count = Math.round(Math.random() * 4);
@@ -21,6 +17,7 @@ module.exports = {
       });
     }
 
+    app.data.batches = fakeData;
     return fakeData;
   }
 };
