@@ -1,30 +1,26 @@
+var app = require(process.cwd() + '/app');
+
 module.exports = {
-  _mock: function(req, res, next) {
-    function randomId(){
-      return Math.ceil(Math.random()*10000);
+  _mock: function(req, session, next) {
+    try {
+      return app.get('batches');
+    } catch (e) {
+
     }
 
-    // return empty half the time
-    if(Math.random()>0.5){
-      console.log('mocked empty'.red);
-      return [];
+    var fakeData = [];
+    var count = Math.round(Math.random() * 4);
+
+    for (var i = 0; i < count; i++) {
+      var id = Math.ceil(Math.random() * 10000);
+      fakeData.push({
+        "id": id,
+        "batchStatus": "VALIDATED_WITH_ERRORS",
+        "name": "My set " + id,
+        "partner": "appdirect"
+      });
     }
 
-    return [{
-      "id": randomId(),
-      "batchStatus": "VALIDATED_WITH_ERRORS",
-      "name": "My set 1",
-      "partner": "appdirect"
-    }, {
-      "id": randomId(),
-      "batchStatus": "MIGRATED",
-      "name": "Myset 2",
-      "partner": "appdirect"
-    }, {
-      "id": randomId(),
-      "batchStatus": "MIGRATED_WITH_ERRORS",
-      "name": "Myset 3",
-      "partner": "appdirect"
-    }];
+    return fakeData;
   }
 };
