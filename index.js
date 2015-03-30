@@ -14,7 +14,6 @@ if (config.entryPort && config.entryPort < 1024) {
 var session = {};
 app.use(function(req, res, next) {
   req.session = session;
-  console.log('session', session);
   next();
 });
 
