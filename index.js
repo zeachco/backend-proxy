@@ -11,8 +11,15 @@ if (config.entryPort && config.entryPort < 1024) {
   }
 }
 
+var session = {};
+app.use(function(req, res, next) {
+  req.session = session;
+  console.log('session', session);
+  next();
+});
+
 app.use(require('./mock'));
-app.data = {};
+
 
 var backendAddress = (config.host || '127.0.0.1') + ':' + (config.port || 8080);
 app.use(proxy(backendAddress, {
