@@ -1,4 +1,5 @@
 {
+  "baseUrl": "mocks",
   "showServes": false,
   "showMocks": true,
   "host": "localhost",

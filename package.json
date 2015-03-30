@@ -9,7 +9,6 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
     "colors": "^1.0.3",
     "express": "^4.12.3",
