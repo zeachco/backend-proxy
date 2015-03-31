@@ -4,9 +4,16 @@ var config = require('./mockconf');
 
 module.exports = function(req, res, next) {
   try {
-    var path = url.parse(req.url).path.split('?')[0];
-    var mock = './' + config.baseUrl + '/' + path + '.' + req.method.toLowerCase();
-    var response = require(mock);
+    var path = './' + config.baseUrl + url.parse(req.url).path.split('?')[0];
+    var mock = path + '.' + req.method.toLowerCase();
+    var mockAll = path.replace(/\/[^/]+$/, '/*') + '.' + req.method.toLowerCase();
+    var response;
+
+    try {
+      response = require(mock);
+    } catch (e) {
+      response = require(mockAll);
+    }
 
     if (response._mock) {
       response = response._mock(req, res, next);
