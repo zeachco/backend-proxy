@@ -6,13 +6,15 @@ module.exports = function(req, res, next) {
   try {
     var path = './' + config.baseUrl + url.parse(req.url).path.split('?')[0];
     var mock = path + '.' + req.method.toLowerCase();
-    var mockAll = path.replace(/\/[^/]+$/, '/*') + '.' + req.method.toLowerCase();
+    var wildcardMock = /\/([^/]+)$/.exec(path)[1];
+    var wildcard = path.replace(/\/[^/]+$/, '/*') + '.' + req.method.toLowerCase();
     var response;
 
     try {
       response = require(mock);
     } catch (e) {
-      response = require(mockAll);
+      req.wildcard = wildcardMock;
+      response = require(wildcard);
     }
 
     if (response._mock) {
