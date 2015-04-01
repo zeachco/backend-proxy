@@ -4,6 +4,7 @@ var url = require('url');
 var config = require('./mockconf');
 var app = require('./app');
 
+
 if (config.entryPort && config.entryPort < 1024) {
   var uid = parseInt(process.env.SUDO_UID);
   if (!uid) {
@@ -17,6 +18,11 @@ app.use(function(req, res, next) {
   next();
 });
 
+var bodyParser = require('body-parser')
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
 app.use(require('./mock'));
 
 

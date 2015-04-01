@@ -26,12 +26,22 @@ module.exports = function(req, res, next) {
       try {
         res[typeof response === 'object' ? 'json' : 'end'](response);
         if (config.showMocks) {
+
           console.log(
             'MOCKING'.green,
             req.method,
-            path.green, ('mocking latency of ' + delay + 'ms').gray,
-            config.showResponses ? response : ''
+            path.green, ('mocking latency of ' + delay + 'ms').gray
           );
+
+          if (config.showResponses) {
+            console.log(
+              'Receive'.green,
+              req.body,
+              'Send'.yellow,
+              response
+            );
+          }
+          
         }
       } catch (e) {
         console.error(e);
