@@ -30,7 +30,7 @@ module.exports = function(req, res, next) {
           console.log(
             'MOCKING'.green,
             req.method,
-            path.green, ('mocking latency of ' + delay + 'ms').gray
+            path.green + delay > 0 ? ('mocking latency of ' + delay + 'ms').gray : ''
           );
 
           if (config.showResponses) {
@@ -41,7 +41,7 @@ module.exports = function(req, res, next) {
               response
             );
           }
-          
+
         }
       } catch (e) {
         console.error(e);
