@@ -2,7 +2,7 @@
   "baseUrl": "mocks",
   "showServes": false,
   "showMocks": true,
-  "showResponses": true,
+  "showResponses": false,
   "host": "localhost",
   "port": 8080,
   "entryPort": 8081,

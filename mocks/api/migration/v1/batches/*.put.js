@@ -5,12 +5,13 @@ module.exports = {
     var d = null;
     while (d = req.session.batches[i++]) {
 
-      console.log(d, i);
       if ('' + d.id === '' + req.wildcard) {
-        return {
-          obj: d,
-          payload: req.body
-        };
+
+        for (var n in req.body) {
+          d[n] = req.body[n];
+        }
+        
+        return d;
       }
 
     }
