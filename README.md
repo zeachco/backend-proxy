@@ -14,16 +14,27 @@ npm install -g nodemon
 
 ## example of a basic config
 
+first configure a map
 ```
-// mockconf.json
-{
-  "baseUrl": "mock",      // base path where mocks will be fetched
-  "showServes": true,
-  "showMocks": true,
-  "showResponses": true,
-  "host": "localhost",    // mocked backend host
-  "port": 8080,           // mocked backend port
-  "entryPort": 8081,      // server port to hist proxy
-  "throttle": 500         // latency simulator in millisecs
-}
+// ./mocks/config.json
+
+[{
+	"regex": "api\/marketplace\/v1\/products\/[0-9]+",
+	"methods": ["GET"],
+	"call": "httpStatus",
+	"args": [401]
+}]
+
 ```
+
+then create the handler for this map
+
+```
+// ./mocks/httpStatus.js
+module.exports = function(req, res, next, args) {
+	res.sendStatus(args[0]);
+};
+
+```
+
+in that case, all request matching the regex in `./mocks/config.json` and using the specifed methods will be proxied to the httpStatus mock with suplied arguments
