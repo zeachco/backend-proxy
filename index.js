@@ -11,7 +11,7 @@ GLOBAL.MOCK = function(MODULE) {
 	return require(path);
 };
 var app = MODULE('app');
-GLOBAL._ = require('lodash');
+// GLOBAL._ = require('lodash');
 GLOBAL.DB = {};
 
 if (config.entryPort && config.entryPort < 1024) {
