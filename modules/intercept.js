@@ -6,17 +6,24 @@ fs.watch(process.cwd() + '/mocks/', readConfig);
 readConfig();
 
 function readConfig() {
-	mocks = JSON.parse(fs.readFileSync(process.cwd() + '/mocks/config.json'));
-	console.log(' === LIST OF MOCKS ===');
-	mocks.forEach(function(mock) {
-		var info = [
-			mock.methods.join(', ').yellow,
-			mock.regex.blue,
-			mock.call.magenta,
-			mock.args.join(', ').red
-		];
-		console.log(info.join(' '));
-	});
+	var file = process.cwd() + '/mocks/config.json';
+	try {
+
+		mocks = JSON.parse(fs.readFileSync(file));
+		console.log(' === LIST OF MOCKS ===');
+		mocks.forEach(function(mock) {
+			var info = [
+				mock.methods.join(', ').yellow,
+				mock.regex.blue,
+				mock.call.magenta,
+				mock.args.join(', ').red
+			];
+			console.log(info.join(' '));
+		});
+
+	} catch (e) {
+		console.log('couldn\'t load config from ' + file.blue + '\n' + e.toString().red);
+	}
 }
 
 module.exports = function(req, res, next) {

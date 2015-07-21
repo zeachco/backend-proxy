@@ -1,5 +1,5 @@
 [{
-	"regex": "api\/marketplace\/v1\/products\/[0-9]+",
+	"regex": "!api\/marketplace\/v1\/products\/[0-9]+",
 	"methods": ["GET"],
 	"call": "httpStatus",
 	"args": [401]
