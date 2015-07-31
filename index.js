@@ -53,7 +53,23 @@ app.use(proxy(backendAddress, {
 	}
 }));
 
-var server = app.listen(config.entryPort || 8081, function() {
-	var port = server.address().port;
-	console.log('Proxy listening at http://127.0.0.1:%s'.green, port);
-});
+// var server = app.listen(config.entryPort || 8081, function() {
+// 	var port = server.address().port;
+// 	console.log('Proxy listening at http://127.0.0.1:%s'.green, port);
+// });
+
+var https = require('https');
+var http = require('http');
+var fs = require('fs');
+
+// This line is from the Node.js HTTPS documentation.
+var options = {
+	key: fs.readFileSync(process.cwd() + '/ssl/localhost.key'),
+	cert: fs.readFileSync(process.cwd() + '/ssl/localhost.key.crt')
+};
+
+http.createServer(app).listen(9980);
+https.createServer(options, app).listen(9443);
+
+console.log('Proxy listening at http://localhost:%s'.green, 9980);
+console.log('Proxy listening at https://localhost:%s'.green, 9443);
