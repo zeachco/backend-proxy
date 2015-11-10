@@ -3,7 +3,7 @@
   "showServes": false,
   "showMocks": true,
   "showResponses": false,
-  "host": "dt.dev",
+  "host": "domain.local",
   "port": 8080,
   "entryPort": 8081,
   "throttle": 0
